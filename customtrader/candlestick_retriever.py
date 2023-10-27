@@ -15,25 +15,15 @@ class CandlestickWebSocketApp():
         ws.on_open = self.on_open
         ws.run_forever(sslopt={"cert_reqs": ssl.CERT_NONE})
         
-
     def on_message(self, ws, message):
         candlestick_data = json.loads(message)
-        
-        # print("Open time:", candlestick_data["d"]["k"]["t"])
-        # print("Open:", candlestick_data["d"]["k"]["o"])
-        # print("High:", candlestick_data["d"]["k"]["h"])
-        # print("Low:", candlestick_data["d"]["k"]["l"])
-        # print("Close:", candlestick_data["d"]["k"]["c"])
-        # print("Volume:", candlestick_data["d"]["k"]["a"])
-
+        print(message)
         self.add_closed_candles(candlestick_data)
-        print(self.latest_data[0])
-
 
     def on_error(self, ws, error):
         print("WebSocket Error:", error)
 
-    def on_close(self, ws, close_status_code, close_msg):
+    def on_close(self, ws, close_msg):
         print("WebSocket Closed:", close_msg)
 
     def on_open(self, ws):
@@ -46,6 +36,7 @@ class CandlestickWebSocketApp():
     }
         ws.send(json.dumps(request_data))
 
+    #write candlestick data to a csv
     def write_to_csv(self, candlestick_data):
         with open('candlestick_data.csv', mode='a', newline='') as file:
                     writer = csv.writer(file)
@@ -57,6 +48,8 @@ class CandlestickWebSocketApp():
                         candlestick_data["d"]["k"]["c"],
                         candlestick_data["d"]["k"]["a"]
                     ])
+
+    #check if candlestick contains the right data/format
     def is_valid_candlestick_data(self, data):
         if isinstance(data, dict):
             d = data.get('d')
@@ -70,6 +63,7 @@ class CandlestickWebSocketApp():
             )
         return False
 
+    #add closed candlesticks to the latest data list
     def add_closed_candles(self, data):
         if (self.latest_data):
             if(self.latest_data[-1]["d"]["k"]["t"] == data["d"]["k"]["t"]):
@@ -81,4 +75,4 @@ class CandlestickWebSocketApp():
         elif (self.is_valid_candlestick_data(data)):
             self.latest_data.append(data)
          
-CandlestickWebSocketApp(2)   
+

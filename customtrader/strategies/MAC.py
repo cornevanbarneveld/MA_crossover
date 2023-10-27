@@ -1,7 +1,7 @@
 import csv
 
 class MA_crossover():
-    def __init__(self, data_filename, trader, slow_ma, fast_ma):
+    def __init__(self, data_filename, slow_ma, fast_ma):
         #get slow MA and fast MA from config or something
         self.slow_ma_dp = slow_ma
         self.fast_ma_dp = fast_ma
@@ -11,8 +11,9 @@ class MA_crossover():
         self.fast_ma = 0
         self.in_position = False
         self.starting_amount = 1000
-        self.trader = trader
+        self.trader = Sample_trader()
     
+    #Iterates over the data and looks for trades
     def look_for_trade(self):
         with open(self.data_filename, 'r') as csv_file:
             csv_reader = csv.reader(csv_file)
@@ -24,12 +25,6 @@ class MA_crossover():
                     self.data.append(row)
                     self.slow_ma = self.calculate_ma(self.slow_ma_dp)
                     self.fast_ma = self.calculate_ma(self.fast_ma_dp)
-                    
-                    # print(f"MA: sma: {self.slow_ma} fma: {self.fast_ma}")
-                    # if (self.fast_ma > self.slow_ma):
-                    #     print("buy")
-                    # elif(self.fast_ma < self.slow_ma):
-                    #     print("sell")
 
                     if (self.fast_ma > self.slow_ma and self.in_position == False):
                         if (self.buy(row)):
@@ -49,23 +44,21 @@ class MA_crossover():
         return total_amount / ma
     
     def buy(self, latest_candle):
-        #try to fullfil order 3 times?
-        #do buy logic
         return self.trader.buy(latest_candle)
 
     def sell(self, latest_candle):
-        #try to fullfill order 3 times?
         return self.trader.sell(latest_candle)
 
-# class Live_trader():
-#     def __init__(self):
-#         pass
+#ToDo
+class Live_trader():
+    def __init__(self):
+        pass
 
-#     def buy():
-#         pass
+    def buy(self):
+        pass
 
-#     def sell():
-#         pass
+    def sell(self):
+        pass
 
 class Sample_trader():
     def __init__(self):
