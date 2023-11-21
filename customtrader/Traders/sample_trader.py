@@ -37,6 +37,9 @@ class Sample_trader():
         self.benchmark_comparison = 0
         self.in_position = False
         self.max_wait = 0
+        self.slow_ma = 0
+        self.fast_ma = 0
+        self.data = []
 
     def add_strategy(self, strategy):
         self.strategy = strategy

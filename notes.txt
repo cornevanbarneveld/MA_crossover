@@ -1,0 +1,158 @@
+
+WF - un acnchored
+
+best_long: 11
+best_short: 4
+ 
+Current Amount: 62.63473036357389
+Amount of trades: 1932
+max peak percentage: 10.592379902947584
+max drawdown percentage: -32.59747879101539
+wins: 1164
+losses: 768
+wins percentage: 60.24844720496895
+losses percentage: 39.75155279503105
+benchmark comparison: 1042.2273173927285
+ 
+best_long: 8
+best_short: 1
+ 
+Current Amount: 738.4196976795155
+Amount of trades: 3346
+max peak percentage: 10.592379902947584
+max drawdown percentage: -50.55806869007957
+wins: 1933
+losses: 1413
+wins percentage: 57.77047220561865
+losses percentage: 42.22952779438135
+benchmark comparison: 6303.942520844578
+ 
+best_long: 6
+best_short: 5
+ 
+Current Amount: 1680.912934086119
+Amount of trades: 3693
+max peak percentage: 10.592379902947584
+max drawdown percentage: -50.55806869007957
+wins: 2523
+losses: 1170
+wins percentage: 68.31844029244517
+losses percentage: 31.681559707554825
+benchmark comparison: 692.5707371451196
+ 
+best_long: 5
+best_short: 3
+
+Current Amount: 2159.643813062776
+Amount of trades: 3498
+max peak percentage: 9.484601463696805
+max drawdown percentage: -50.55806869007957
+wins: 2281
+losses: 1217
+wins percentage: 65.2086906803888
+losses percentage: 34.7913093196112
+benchmark comparison: 469.9053876131346
+
+WF acnchored
+
+best_long: 11
+best_short: 4
+test run
+ 
+REPORT-START-------------------------------------------------
+Starting Amount: 1000
+Current Amount: 941.156991385568
+Amount of trades: 1330
+max peak percentage: 8.988417085743833
+max drawdown percentage: -23.271422986134553
+wins: 820
+losses: 510
+wins percentage: 61.65413533834586
+losses percentage: 38.34586466165414
+benchmark comparison: 632.1704784159577
+REPORT-END-----------------------------------------------------
+ 
+best_long: 11
+best_short: 4
+test run
+ 
+REPORT-START-------------------------------------------------
+Starting Amount: 1000
+Current Amount: 1574.0547205940832
+Amount of trades: 1298
+max peak percentage: 2.8095337043324804
+max drawdown percentage: -12.645860292238822
+wins: 818
+losses: 480
+wins percentage: 63.02003081664098
+losses percentage: 36.97996918335902
+benchmark comparison: 2692.894686846938
+REPORT-END-----------------------------------------------------
+ 
+best_long: 11
+best_short: 4
+test run
+ 
+REPORT-START-------------------------------------------------
+Starting Amount: 1000
+Current Amount: 1679.5757683696754
+Amount of trades: 1183
+max peak percentage: 8.887520502768439
+max drawdown percentage: -18.403963843618754
+wins: 730
+losses: 453
+wins percentage: 61.70752324598479
+losses percentage: 38.29247675401521
+benchmark comparison: 1769.1407366078959
+REPORT-END-----------------------------------------------------
+ 
+best_long: 12
+best_short: 3
+test run
+ 
+REPORT-START-------------------------------------------------
+Starting Amount: 1000
+Current Amount: 1421.28316966191
+Amount of trades: 1320
+max peak percentage: 3.6787152445965035
+max drawdown percentage: -13.49111830549991
+wins: 790
+losses: 530
+wins percentage: 59.84848484848485
+losses percentage: 40.15151515151515
+benchmark comparison: 1247.495064915888
+REPORT-END-----------------------------------------------------
+ 
+best_long: 9
+best_short: 2
+test run
+ 
+REPORT-START-------------------------------------------------
+Starting Amount: 1000
+Current Amount: 896.4172978995651
+Amount of trades: 1794
+max peak percentage: 2.785021233158602
+max drawdown percentage: -9.431493503578196
+wins: 1073
+losses: 721
+wins percentage: 59.810479375696765
+losses percentage: 40.189520624303235
+benchmark comparison: 522.0098277128035
+REPORT-END-----------------------------------------------------
+ 
+best_long: 9
+best_short: 2
+test run
+ 
+REPORT-START-------------------------------------------------
+Starting Amount: 1000
+Current Amount: 1317.3174139650532
+Amount of trades: 1845
+max peak percentage: 3.2547062710051193
+max drawdown percentage: -7.624265488654373
+wins: 1106
+losses: 739
+wins percentage: 59.945799457994575
+losses percentage: 40.054200542005425
+benchmark comparison: 1497.7816709583105
+REPORT-END-----------------------------------------------------

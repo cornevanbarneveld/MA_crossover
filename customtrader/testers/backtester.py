@@ -20,8 +20,8 @@ class Backtester():
                 self.trader.strategy.update_draw(current_price)
                 last_line = row
 
-                if in_pos != self.trader.strategy.in_position and self.trader.strategy.in_position == False:
-                    self.trader.strategy.print_report()
+                # if in_pos != self.trader.strategy.in_position and self.trader.strategy.in_position == False:
+                #     self.trader.strategy.print_report()
 
             self.trader.strategy.calculate_benchmark(float(first_line[4]), float(last_line[4]))
 
