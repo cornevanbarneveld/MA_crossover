@@ -5,8 +5,9 @@ import requests
 import time
 import hashlib
 import hmac
+from .. import MexcClient
 
-class Sample_trader():
+class Live_trader():
     def __init__(self):
         self.order_amount = 0
         self.order_size_percent = 1
@@ -22,14 +23,31 @@ class Sample_trader():
         self.benchmark_comparison = 0
         self.in_position = False
         self.max_wait = 0
+        self.symbol = None
+        self.client = MexcClient.MEXC_client()
 
-    def get_current_amount(self):
+    def get_current_positions(self):
+        current_positions = self.client.get_current_positions()
+        print(current_positions)
+        self.position_amount = None
         self.spot_amount = None
-        self.current_position = None
-        #implement retrieving current position
+        for balance in current_positions:
+            if balance['asset'] == 'USDC':
+                self.spot_amount = float(balance['free'])
+            elif balance['asset'] == self.symbol:
+                self.position_amount = float(balance['free'])
+        
+        print(self.spot_amount)
+        print(self.position_amount)
 
     def add_strategy(self, strategy):
         self.strategy = strategy
+
+    def set_symbol(self, symbol):
+        self.symbol = symbol
+
+    def look_for_trade(self, datapoint):
+        self.strategy.look_for_trade(datapoint)
 
     def generate_report(self):
         return test_report.Test_Report(self.starting_amount, 
@@ -62,40 +80,19 @@ class Sample_trader():
                 
     def buy(self, latest_candle):
         self.bought_at = float(latest_candle[4])
-        self.order_amount = self.current_amount * self.order_size_percent
-        self.current_amount -= self.order_amount
+        # retrieve latest order data
         self.in_position = True
-
-        endpoint = "https://api.example.com/api/v3/order"
-        symbol = "BTCUSDT"
-        side = "BUY"
-        type = "MARKET"
-        quantity = 1
-        price = 0.000001
-        timestamp = int(time.time() * 1000)  # Current timestamp in milliseconds
-
-        # Create the signature
-        data = f"symbol={symbol}&side={side}&type={type}&quantity={quantity}&price={price}&timestamp={timestamp}"
-        signature = hmac.new(config.SECRET_KEY.encode(), data.encode(), hashlib.sha256).hexdigest()
-
-        # Build the request URL
-        url = f"{endpoint}?symbol={symbol}&side={side}&type={type}&quantity={quantity}&price={price}&timestamp={timestamp}&signature={signature}"
-
-        # Make the API request
-        response = requests.post(url, headers={"X-MBX-APIKEY": config.API_KEY})
-
-        # Print the response
-        print(response.json())
-
+        print("Buy")
+        #impl buy
+    
 
     def sell(self, latest_candle):
-        self.amount_of_trades += 1
         sold_at = float(latest_candle[4]) 
-        new_amount = sold_at / self.bought_at * self.order_amount
-        self.calculate_wins_or_losses(new_amount)
-        self.current_amount = new_amount
+        #retrieve latest order data
         self.in_position = False
-        
+        print("sell")
+        #impl sell
+
     def end_session(self):
         self.current_amount += self.order_amount
         self.in_position = False

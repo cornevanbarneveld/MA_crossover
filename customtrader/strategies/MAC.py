@@ -18,7 +18,6 @@ def MA_crossover_factory(parent_class, slow_ma, fast_ma):
                 self.data.append(row)
                 self.slow_ma = self.calculate_ma(self.slow_ma_dp)
                 self.fast_ma = self.calculate_ma(self.fast_ma_dp)
-
                 if (self.fast_ma > self.slow_ma and not self.in_position):
                     self.buy(row)
                 elif(self.fast_ma < self.slow_ma and self.in_position):
@@ -27,7 +26,9 @@ def MA_crossover_factory(parent_class, slow_ma, fast_ma):
                 self.data.append(row)
 
         def calculate_ma(self, ma):
-            total_amount = sum(float(data_row[4]) for data_row in self.data[:ma])
+            total_amount = 0.0
+            for data_row in self.data[-ma:]:
+                total_amount += float(data_row[4])
             return total_amount / ma
         
         def train_strategy(self, training_data):
