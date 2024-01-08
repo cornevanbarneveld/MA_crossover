@@ -70,7 +70,13 @@ class Sample_trader():
 
     def update_draw(self, current_price):
         if self.in_position:
+
             draw_perc = (current_price / self.bought_at ) * 100 - 100
+            print(f"current_price: {current_price}" )
+            print(f"self.bought_at: {self.bought_at}" )
+            print(f"draw perc: {draw_perc}" )
+            print(f"draw perc: {draw_perc}" )
+            print(f"draw perc: {draw_perc}" )
             if (draw_perc < self.maximum_drawdown_perc):
                 self.maximum_drawdown_perc = draw_perc
             elif (draw_perc > self.maximum_peak_perc):

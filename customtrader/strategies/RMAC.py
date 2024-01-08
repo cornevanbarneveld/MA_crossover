@@ -1,8 +1,8 @@
 from ..Traders import live_trader
 
-def MA_crossover_factory(parent_class, slow_ma, fast_ma, interval, symbol):
+def RMA_crossover_factory(parent_class, slow_ma, fast_ma, interval, symbol):
 
-    class MA_crossover(parent_class):
+    class RMA_crossover(parent_class):
         def __init__(self):
             #get slow MA and fast MA from config or something
             super().__init__()
@@ -22,9 +22,9 @@ def MA_crossover_factory(parent_class, slow_ma, fast_ma, interval, symbol):
                 self.data.append(row)
                 self.slow_ma = self.calculate_ma(self.slow_ma_dp)
                 self.fast_ma = self.calculate_ma(self.fast_ma_dp)
-                if (self.fast_ma > self.slow_ma and not self.in_position):
+                if (self.fast_ma < self.slow_ma and not self.in_position):
                     self.buy(row)
-                elif(self.fast_ma < self.slow_ma and self.in_position):
+                elif(self.fast_ma > self.slow_ma and self.in_position):
                     self.sell(row)
             else: 
                 if isinstance(live_trader.Live_trader(), parent_class):
@@ -88,5 +88,5 @@ def MA_crossover_factory(parent_class, slow_ma, fast_ma, interval, symbol):
 
             return score == 9 or score == 7
 
-    return MA_crossover()
+    return RMA_crossover()
 

@@ -36,10 +36,10 @@ class CandlestickWebSocketApp():
             if (self.current_candle):
                 if (self.current_candle[0] == candle_data[0]):
                     self.current_candle = candle_data
-                if(self.current_candle[0] != candle_data[0]):
+                elif (self.current_candle[0] != candle_data[0]):
                         self.trader.look_for_trade(self.current_candle)
-                        self.current_candle = candle_data 
                         self.write_to_csv(self.current_candle)
+                        self.current_candle = candle_data 
             else:
                 self.current_candle = candle_data
                 # self.write_to_csv(self.current_candle)

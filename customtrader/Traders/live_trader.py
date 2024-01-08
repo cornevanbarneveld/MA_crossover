@@ -1,10 +1,4 @@
-import csv
 from ..loggers import test_report
-import config
-import requests
-import time
-import hashlib
-import hmac
 from .. import MexcClient
 
 class Live_trader():
@@ -23,10 +17,9 @@ class Live_trader():
         self.benchmark_comparison = 0
         self.in_position = False
         self.max_wait = 0
-        self.symbol = None
         self.client = MexcClient.MEXC_client()
 
-    def get_current_positions(self):
+    def get_current_positions(self, symbol):
         current_positions = self.client.get_current_positions()
         print(current_positions)
         self.position_amount = None
@@ -34,17 +27,19 @@ class Live_trader():
         for balance in current_positions:
             if balance['asset'] == 'USDC':
                 self.spot_amount = float(balance['free'])
-            elif balance['asset'] == self.symbol:
+            elif balance['asset'] == symbol:
                 self.position_amount = float(balance['free'])
         
         print(self.spot_amount)
         print(self.position_amount)
 
+    def fill_data(self, candles):
+        print(self.client.get_historical_data(self.symbol, self.interval, candles))
+        return self.client.get_historical_data(self.symbol, self.interval, candles)
+        # return self.client.get_historical_data(self.symbol, )
+
     def add_strategy(self, strategy):
         self.strategy = strategy
-
-    def set_symbol(self, symbol):
-        self.symbol = symbol
 
     def look_for_trade(self, datapoint):
         self.strategy.look_for_trade(datapoint)
@@ -82,16 +77,20 @@ class Live_trader():
         self.bought_at = float(latest_candle[4])
         # retrieve latest order data
         self.in_position = True
+        self.get_current_positions("BTC")
         print("Buy")
-        #impl buy
+        #impl buy  
+        self.client.buy("BTCUSDC", "MARKET", self.spot_amount)
     
 
     def sell(self, latest_candle):
         sold_at = float(latest_candle[4]) 
         #retrieve latest order data
         self.in_position = False
+        self.get_current_positions("BTC")
         print("sell")
         #impl sell
+        self.client.sell("BTCUSDC", "MARKET", self.position_amount)
 
     def end_session(self):
         self.current_amount += self.order_amount
